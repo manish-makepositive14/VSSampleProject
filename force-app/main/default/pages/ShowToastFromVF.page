@@ -1,0 +1,35 @@
+<apex:page >
+    <html>
+        <head>
+            <title>Toast From Visualforce</title>
+        </head>
+        <body>
+            
+            <apex:includeLightning />
+            <div id="lightning"/>
+
+            <script>
+                var myUserContext = "{!$User.UITheme}";
+                $Lightning.use("c:InvokableLightningApp", function() {
+                    $Lightning.createComponent("c:ShowToastFromVF",
+                          {},
+                          "lightning",
+                            function(cmp) {
+                                $A.eventService.addHandler({
+                                       event: 'force:showToast',
+                                       handler: function(event) { 
+                                           var lexOrigin = "https://firstlight17-dev-ed.lightning.force.com";
+                                           var message={type: "EventFromVF",
+                                                        message: event.getParams().message};
+                                           parent.postMessage(message, lexOrigin);
+                                       }
+                                });
+                          
+                            }
+                    );
+                });    
+            </script>
+        
+        </body>
+    </html>
+</apex:page>

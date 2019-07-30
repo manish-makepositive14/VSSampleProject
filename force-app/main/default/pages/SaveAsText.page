@@ -1,0 +1,5 @@
+<apex:page controller="TestVFController"  contentType="text/plain/#test.txt">
+        <apex:repeat value="{!AccountList}" var="acc">
+             {!acc}
+        </apex:repeat>
+</apex:page>

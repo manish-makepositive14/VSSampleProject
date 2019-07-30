@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="individualRec" type="Account" />
+     <tr>
+            <!--<th scope="row"><div class="slds-truncate" title="{!account.Id}">{!individualRec.rowNum}<ui:inputCheckbox value="{!account.selected}" change="{!c.showPopup}"/></div></th>-->
+          <th scope="row"><div class="slds-truncate" >{!v.individualRec.rowNum}<ui:inputCheckbox value="{!v.individualRec.selected}" change="{!c.showPopup}"/></div></th>
+          <td><div class="slds-truncate" >{!v.individualRec.acc.Name}</div></td>
+          <td><div class="slds-truncate" >{!v.individualRec.acc.Type}</div></td>
+          <td><div class="slds-truncate" >{!v.individualRec.acc.NumberOfEmployees}</div></td>
+          <td><div class="slds-truncate" >{!v.individualRec.acc.TickerSymbol}</div></td>
+          <td><div class="slds-truncate" >{!v.individualRec.acc.Phone}</div></td>
+          <td>
+
+          </td>
+        </tr>
+</aura:component>

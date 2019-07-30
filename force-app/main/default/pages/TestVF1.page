@@ -1,0 +1,9 @@
+<apex:page controller="MyController">
+  <apex:form id="bill">
+      <apex:pageMessages />
+      <apex:inputText value="{!myString}" required="true"/>
+      <apex:commandButton value="Click" onclick="GetThisCarInformation();return false;">
+          <apex:actionFunction name="GetThisCarInformation" action="{!save}" />
+      </apex:commandButton>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,112 @@
+<aura:component controller="AccountsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:attribute name="lstAccount" 
+					type="AccountsController.AccountWrapper[]" />
+  <aura:attribute name="errorMsg" 
+					type="String" />
+  <aura:attribute name="lstRows" 
+					type="AccountsController.TextWrapper[]" />
+  <aura:attribute name="accId" type="String" />
+    <aura:attribute name="acct" type="Account"/>
+  
+  
+    
+    <ltng:require styles="/resource/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" 
+                  scripts="/resource/bootstrap/bootstrap-3.3.7-dist/js/jquery.js,
+                           /resource/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
+    <ltng:require styles="/resource/LDS/assets/styles/salesforce-lightning-design-system.css" />
+    
+      <!--
+    Use a data table from the Lightning Design System:
+    https://www.lightningdesignsystem.com/components/data-tables/
+  -->
+  <form class="account-form" onsubmit="{!c.showPopup}">
+      {!v.errorMsg}
+  <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <thead>
+      <tr class="slds-text-heading--label">
+        <th scope="col"><div class="slds-truncate" title="Select">Select</div></th>
+        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+        <th scope="col"><div class="slds-truncate" title="Type">Type</div></th>
+        <th scope="col"><div class="slds-truncate" title="Number Of Employees">Number Of Employees</div></th>
+        <th scope="col"><div class="slds-truncate" title="Ticker Symbol">Ticker Symbol</div></th>
+        <th scope="col"><div class="slds-truncate" title="Phone">Phone</div></th>
+        <th scope="col"><div class="slds-truncate" title="Delete">Delete</div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Use the Apex model and controller to fetch server side data -->
+      
+      <aura:iteration items="{!v.lstAccount}" var="account">
+          <!--<input type="hidden" value="{!account.Name}" class="account-name" />
+                <input type="hidden" aura:id = "account-id" value="{!account.Id}"/>
+        <tr>
+            <th scope="row"><div class="slds-truncate" title="{!account.Id}">{!account.rowNum}<ui:inputCheckbox value="{!account.selected}" change="{!c.showPopup}"/></div></th>
+          <td><div class="slds-truncate" title="{!account.acc.Name}">{!account.acc.Name}</div></td>
+          <td><div class="slds-truncate" title="{!account.acc.Type}">{!account.acc.Type}</div></td>
+          <td><div class="slds-truncate" title="{!account.acc.NumberOfEmployees}">{!account.acc.NumberOfEmployees}</div></td>
+          <td><div class="slds-truncate" title="{!account.acc.TickerSymbol}">{!account.acc.TickerSymbol}</div></td>
+          <td><div class="slds-truncate" title="{!account.acc.Phone}">{!account.acc.Phone}</div></td>
+          <td>
+            
+            
+           
+              <lightning:button label="Delete"
+                                iconName="utility:delete"
+                                iconPosition="left"
+                                variant="destructive"
+                                />
+
+          </td>
+        </tr>-->
+          
+          <c:ChildComponentNew individualRec="{!account}" aura:id="cComp"/>
+      </aura:iteration>
+         </tbody>
+  </table>
+      <button class="slds-button slds-button--brand" onclick="{!c.addRows}">Add</button>
+      <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <thead>
+      <tr class="slds-text-heading--label">
+        <th scope="col"><div class="slds-truncate" title="Select">Select</div></th>
+        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+        <th scope="col"><div class="slds-truncate" title="Type">Type</div></th>
+      </tr>
+    </thead>
+    <tbody>
+        <aura:iteration items="{!v.lstRows}" var="row">
+            <button class="slds-button slds-button--brand" onclick="{!c.addRows}">Add</button>
+            <ui:inputText value="{!row.name}"/><br/>
+            <ui:inputText value="{!row.typ}"/><br/>
+            <ui:inputText value="{!row.industry}"/><br/>
+        </aura:iteration>
+    </tbody>
+      </table>
+      <div aria-hidden="false" id="newAccountSectionId" role="dialog" class="slds-modal slds-modal--large slds-fade-in-open" style="display:none;">
+          <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+  <div class="slds-modal__container">
+    <div class="slds-modal__header">
+      <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+        <![CDATA[
+        <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+          <use xlink:href="/resource/LDS/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+        </svg>
+        ]]>
+        <span class="slds-assistive-text">Close</span>
+      </button>
+      <h2 id="header43" class="slds-text-heading--medium">Modal Header</h2>
+    </div>
+    <div class="slds-modal__content slds-p-around--medium">
+        Name :<ui:inputText value="{!v.acct.Name}"/>
+        Type :<ui:inputText value="{!v.acct.Type}"/>
+        Industry :<ui:inputText value="{!v.acct.Industry}"/>
+    </div>
+    <div class="slds-modal__footer">
+      <button class="slds-button slds-button--neutral">Cancel</button>
+      <button class="slds-button slds-button--brand" onclick="{!c.updateValues}">Save</button>
+    </div>
+  </div>
+</div>
+<div class="slds-backdrop slds-backdrop--open"></div></div>
+</form>
+</aura:component>

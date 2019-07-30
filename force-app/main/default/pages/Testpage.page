@@ -1,0 +1,7 @@
+<apex:page >
+<!-- Vulnerable Page at http://foo.force.com/apex/search -->
+  <div id='greet'></div>
+    <script>
+      document.querySelector('#greet').innerHTML='You searched for <b>{!$CurrentPage.parameters.q}</b>';
+    </script>
+</apex:page>

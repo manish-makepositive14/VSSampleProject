@@ -1,0 +1,7 @@
+<aura:documentation>
+	<aura:description>This page is doscumentation</aura:description>
+
+	<aura:example name="ExampleName" ref="c:DocumentationComponent" label="Label">
+		Example Description
+	</aura:example>
+</aura:documentation>

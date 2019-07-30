@@ -1,0 +1,8 @@
+<apex:page showHeader="true" sidebar="true" controller="FacebookAuthenticController">
+<apex:form >    
+	<p>Please authenticate with facebook </p>
+	<apex:commandButton value="Authenticate" action="{!getAuthURI}"/>
+	<apex:commandButton value="Tokens" action="{!getPosts}"/>
+	{!body}
+</apex:form>
+</apex:page>

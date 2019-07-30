@@ -1,0 +1,24 @@
+<aura:component controller="AccountsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+	 <aura:attribute name="account" type="AccountsController.AccountWrapper"/>       
+        <tr>
+          <th scope="row"><div class="slds-truncate" title="{!v.account.Id}"><ui:inputCheckbox value="{!v.account.selected}" change="{!c.showPopup}"/></div></th>
+          
+          <td><div class="slds-truncate" title="{!v.account.acc.Name}">{!v.account.acc.Name}</div></td>
+          <td><div class="slds-truncate" title="{!v.account.acc.Type}">{!v.account.acc.Type}</div></td>
+          <td><div class="slds-truncate" title="{!v.account.acc.NumberOfEmployees}">{!v.account.acc.NumberOfEmployees}</div></td>
+          <td><div class="slds-truncate" title="{!v.account.acc.TickerSymbol}">{!v.account.acc.TickerSymbol}</div></td>
+          <td><div class="slds-truncate" title="{!v.account.acc.Phone}">{!v.account.acc.Phone}</div></td>
+          <td>
+            
+            
+             
+              <lightning:button label="Delete"
+                                iconName="utility:delete"
+                                iconPosition="left"
+                                variant="destructive"
+                                />
+
+          </td >
+        
+        </tr>
+</aura:component>

@@ -1,0 +1,8 @@
+<aura:component controller="BundleComponentController">
+    <aura:attribute name="searchString" type="String"/>
+	<aura:handler event="c:SearchComponentEvt" action="{!c.handleBubbledEvent}" />
+    {!v.searchString}
+    <div>hiiii</div>
+    
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
+</aura:component>

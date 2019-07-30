@@ -1,0 +1,4 @@
+<aura:component >
+    <div aura:id="toggleIt">Toggle</div>
+    <lightning:button label="Change" onclick="{!c.changeNow }"/>
+</aura:component>

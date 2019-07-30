@@ -1,0 +1,49 @@
+<aura:component controller="CampaignController">
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+    <aura:attribute name="camp" type="Campaign" default="{ 'sobjectType': 'Campaign' }"/> 
+    <aura:registerEvent name="cmpEvent" type="c:CampaignComponentEvt"/>
+    <!--<aura:attribute name="message"
+                    type="AuraProcessingMessage"/>-->
+    Name : 
+    <force:inputField aura:id="camName" 
+                 value="{!v.camp.Name}"/>
+    <p/>
+    Packed? :
+    <force:inputField aura:id="campack" 
+                 value="{!v.camp.Packed__c}"/>
+    <p/>
+    Price :
+    <force:inputField aura:id="camPrice" 
+                 value="{!v.camp.Price__c}"/>
+    <p/>
+    Quantity  :
+    <force:inputField aura:id="camQuan" 
+                 value="{!v.camp.Quantity__c}"/>
+    <div/>
+    <lightning:button label="Submit" onclick="{!c.sendData}"/>
+    
+    <!--<table>
+    <thead>
+      <tr>
+        <th scope="col">Select</th>
+        <th scope="col">Name</th>
+        <th scope="col">Packed</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+        <aura:if isTrue="{!v.message.isSuccess}">
+            <aura:iteration items="{!v.message.campWrap}" var="campaign">
+             	<c:campaignRowComponent individualRec="{!campaign}" aura:id="cComp"/>
+        	</aura:iteration>
+            <aura:set attribute="else">
+                {!v.message.errorMsg}
+            </aura:set>
+        </aura:if>
+       
+        
+    </tbody>
+    </table>-->
+    
+</aura:component>

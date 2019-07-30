@@ -1,0 +1,5 @@
+<aura:component controller="CampaignController">
+    <aura:handler name="cmpEvent" event="c:CampaignComponentEvt" action="{!c.handleComponentEvent}"/>
+    <aura:attribute name="campaign" type="Campaign"/>
+    <c:CampaignComponent />
+</aura:component>

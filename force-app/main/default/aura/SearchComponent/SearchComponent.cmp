@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:attribute name="searchText" type="string" />
+    <aura:registerEvent name="appEvent" type="c:SearchComponentEvt"/>
+	<ui:inputText label="Product Bundle Name" value="{!v.searchText}" required="true"/>
+    <lightning:button variant="brand" label="Submit" onclick="{! c.handleClick }" />
+</aura:component>

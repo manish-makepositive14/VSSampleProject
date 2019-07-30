@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="individualRec" type="CampaignController.CampaignWrapper" />
+     <tr>  
+          <td><ui:inputCheckbox value="{!v.individualRec.selected}"></ui:inputCheckbox></td>
+          <td>{!v.individualRec.cmp.Name}</td> 
+          <td>{!v.individualRec.cmp.Packed__c}</td>
+          <td>{!v.individualRec.cmp.Price__c}</td>
+          <td>{!v.individualRec.cmp.Quantity}</td>
+        </tr>
+</aura:component>

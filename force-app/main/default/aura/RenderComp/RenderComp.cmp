@@ -1,0 +1,9 @@
+<aura:component >
+    <aura:attribute type="boolean" name="showText"/>
+    <aura:if isTrue="{!v.showText}"> Heyaaaa
+        <aura:set attribute="else">
+            Nothing to show
+        </aura:set>
+    </aura:if>
+     <lightning:button label="Click Me" onclick="{!c.showTextMessage}"/>
+</aura:component>

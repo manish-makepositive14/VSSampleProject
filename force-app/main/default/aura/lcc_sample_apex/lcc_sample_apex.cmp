@@ -1,0 +1,24 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    
+    <!--<lightning:card title="LCC Apex Sample">
+
+        <lightning:container aura:id="jsApp" src="{!$Resource.lcc_sample_apex + '/index.html'}"
+            onmessage="{!c.handleMessage}"
+            onerror="{!c.handleError}"/>
+
+    </lightning:card>-->
+    
+    <!-- DragDropContainer.cmp -->
+    <!-- resources -->
+    <ltng:require styles="{!$Resource.bulma + '/bulma-0.4.2/css/bulma.css'}" />
+    <!-- attributes -->
+    <aura:attribute name="allItems" type="list"></aura:attribute>
+    <!-- event handlers -->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"></aura:handler>
+    <aura:handler name="pipelineChange" event="c:pipelineChange" action="{!c.onPipelineChanged}"></aura:handler>
+    <div class="columns">
+        <c:pipeline title="New" items="{!v.allItems}"></c:pipeline>
+        <c:pipeline title="Closed" items="{!v.allItems}"></c:pipeline>
+        <c:pipeline title="Deleted" items="{!v.allItems}"></c:pipeline>
+    </div>
+</aura:component>

@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:attribute type="String" name="sampleAtt"/>
+    <aura:handler name="change" value="{!v.sampleAtt}" action="{!c.doSomething}"/>
+    <c:AttributeApp value="{!v.sampleAtt}"/>
+     <div id="valueDiv">{!v.sampleAtt}</div> 
+    
+    <lightning:button label="Change" onclick="{!c.changeParent}"/>
+</aura:component>

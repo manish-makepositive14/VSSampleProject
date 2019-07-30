@@ -1,0 +1,15 @@
+<!--c:aeHandler-->
+<aura:component >
+    <aura:attribute name="messageFromEvent" type="String"/>
+    <aura:attribute name="numEvents" type="Integer" default="0"/>
+
+    <aura:handler event="c:FirstComponentEvt" action="{!c.handleApplicationEvent}"/>
+
+    <p>{!v.messageFromEvent}</p>
+    <p>Number of events: {!v.numEvents}</p>
+    
+    <aura:method name="myMethod" action="{!c.executeMyMethod}">
+        <aura:attribute name="param1" type="String" default="parameter 1"/>
+    	<aura:attribute name="param2" type="String" />
+    </aura:method>
+</aura:component>

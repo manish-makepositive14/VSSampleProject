@@ -1,0 +1,76 @@
+<apex:page controller="EntitlementCriteriaController" action="{!isDataAvailable}">
+    <apex:form >
+        <apex:pageMessages />
+
+        <apex:outputPanel id="thePanel1" rendered="{!isModifyPanel}">
+            <apex:outPutLabel value="Milestone:"/>
+                <apex:selectList id="milestone" value="{!selectedMilestone}" size="1">
+                    <apex:selectOptions value="{!milestoneOptions}"/>
+                </apex:selectList>
+                <br/>
+                <apex:pageBlock id="theBlock">
+                    <div style="width:60%">
+                        <apex:pageBlockButtons >
+                            <apex:commandButton value="Save" action="{!save}"/>
+                            <apex:commandButton value="Cancel" action="{!cancel}"/>
+                        </apex:pageBlockButtons>
+                        
+                        <apex:pageBlockSection columns="4">
+                            <apex:outputLabel value="Row Count" />
+                            <apex:outputLabel value="Field"/>
+                            <apex:outputLabel value="Operator"/>
+                            <apex:outputLabel value="Value"/>
+                             
+                            <apex:repeat value="{!milestoneCriteriaList}" var="memb">
+                                <apex:outputText value="{!memb.rowNum}"/> 
+                                <apex:selectList id="caseFields" value="{!memb.selectedField}" size="1" >
+                                    <apex:selectOptions value="{!memb.CaseFields}"/>
+                                </apex:selectList>
+                            
+                                <apex:selectList id="operator" value="{!memb.selectedOperator}" size="1" >
+                                    <apex:selectOptions value="{!memb.Operator}"/>
+                                </apex:selectList>
+                                <apex:inputText value="{!memb.textValue}" id="dependentField"/>
+                            </apex:repeat>
+                        </apex:pageBlockSection>
+                        
+                        <apex:commandLink style="font-size:12px; font-weight:bold; text-align:center;" value="Add Row" action="{!addRow}" reRender="theBlock"/>&nbsp;
+                        <apex:commandLink style="font-size:12px; font-weight:bold; text-align:center;" value="Remove Row" action="{!delRow}" reRender="theBlock" rendered="{!rowNum>4}"/>
+                        <p/>
+                        <apex:commandLink style="font-size:12px; font-weight:bold; text-align:center;" action="{!addFilterLogic}" value="Reset Filter Logic"/>
+                        <p/>
+                        <apex:outPutText value="Filter Logic:" />
+                        <apex:inputText value="{!filterLogic}" id="theFilter"/>
+                       
+                       <p/>
+                       <apex:pageMessage summary="Note: Date Fields Are Not Handled." severity="info" strength="3" />
+                    </div>
+                </apex:pageBlock>
+            </apex:outputPanel>
+            
+            <apex:outputpanel id="thePanel2" rendered="{!isListPanel}" >
+                <apex:pageBlock id="theBlock2">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="New Milestone Criteria" action="{!newMilestone}" id="theNewMilestone"/>
+                    </apex:pageBlockButtons>
+                    
+                    <apex:pageBlockTable value="{!MilestoneCriteriaValues}" var="milestoneCriteria" rendered="{!isData}">
+                        <apex:column headerValue="Action" style="width:8%;">
+                            <apex:commandLink value="Edit" style="color:blue" action="{!edit}">
+                                <apex:param name="milestoneCriteriaId" assignTo="{!milestoneCriteriaId}" value="{!milestoneCriteria.Id}"/>
+                            </apex:commandLink> &nbsp;
+                            <apex:commandLink value="Delete" style="color:blue" action="{!del}">
+                                <apex:param name="milestoneCriteriaIdduplicate" assignTo="{!milestoneCriteriaId}" value="{!milestoneCriteria.Id}"></apex:param>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:column headerValue="Milestone Criteria Name" value="{!milestoneCriteria.Name}"/>
+                        <apex:column headerValue="Criteria" value="{!milestoneCriteria.Criteria__c}"/>
+                    </apex:pageBlockTable>
+
+                    <apex:outPutPanel rendered="{!!isData}">
+                        <apex:pageMessage summary="There are no records to display." severity="warning" strength="3" />
+                    </apex:outPutPanel>
+                </apex:pageBlock>
+            </apex:outputpanel>       
+    </apex:form>
+</apex:page>

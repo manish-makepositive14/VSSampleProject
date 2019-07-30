@@ -1,0 +1,7 @@
+<aura:component >
+    
+	<aura:attribute name="value" type="String" />
+    <div id="valueDiv">{!v.value}</div> 
+    <aura:handler name="change" value="{!v.value}" action="{!c.doSomething}"/>
+    <lightning:button label="Change" onclick="{!c.changeChild}"/>
+</aura:component>

@@ -1,0 +1,5 @@
+<aura:component controller="AccountsController">
+	
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    {!v.errorMsg}
+</aura:component>
